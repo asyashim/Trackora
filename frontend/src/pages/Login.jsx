@@ -1,12 +1,35 @@
 
 import "./Login.css";
-import { Link } from "react-router-dom";
+import { Link,useNavigate } from "react-router-dom";
+import { loginUser } from "../api/authApi";
+import { useState } from "react";
 
 const Login = () => {
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log("Login form submitted");
-  };
+  const navigate=useNavigate()
+
+  const [email, setEmail] = useState("");
+const [password, setPassword] = useState("");
+
+const handleSubmit = async (e) => {
+  e.preventDefault();
+
+  try {
+    const data = await loginUser({
+      email,
+      password,
+    });
+
+    console.log(data.message);
+    console.log(data.user);
+    console.log(data.token);
+
+    navigate("/dashboard");
+
+  } catch (error) {
+    console.error("Login failed:", error.message);
+  }
+};
+
 
   return (
     <div className="auth-container">
@@ -51,6 +74,8 @@ const Login = () => {
               <input
                 type="email"
                 placeholder="Enter your email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
                 required
               />
             </div>
@@ -60,6 +85,8 @@ const Login = () => {
               <input
                 type="password"
                 placeholder="Enter your password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
                 required
               />
             </div>
@@ -71,7 +98,7 @@ const Login = () => {
           </form>
 
           <p className="auth-switch">
-            Don't have an account? <a href="/Register">Register</a>
+            Don't have an account? <Link to="/Register">Register</Link>
           </p>
 
         </div>

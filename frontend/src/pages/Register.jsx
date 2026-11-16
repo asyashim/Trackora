@@ -1,12 +1,38 @@
 
 import "./Register.css";
-import { Link } from "react-router-dom";
+import { Link ,useNavigate } from "react-router-dom";
+import {useState} from "react";
+import { registerUser } from "../api/authApi";
 
 const Register = () => {
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log("Registration form submitted");
-  };
+
+  const [name, setName] = useState("");
+const [email, setEmail] = useState("");
+const [password, setPassword] = useState("");
+const navigate =useNavigate()
+
+
+ const handleSubmit = async (e) => {
+  e.preventDefault();
+
+  try {
+    const data = await registerUser({
+      name,
+      email,
+      password,
+    });
+
+    console.log(data.message);
+    console.log(data.user);
+
+  navigate("/login")
+   
+
+
+  } catch (error) {
+    console.error("Registration failed:", error.message);
+  }
+};
 
   return (
     <div className="auth-container">
@@ -51,6 +77,8 @@ const Register = () => {
               <input
                 type="text"
                 placeholder="Enter your full name"
+                value={name}
+                onChange={(e)=>setName(e.target.value)}
                 required
               />
             </div>
@@ -60,6 +88,8 @@ const Register = () => {
               <input
                 type="email"
                 placeholder="Enter your email"
+                value={email}
+                onChange={(e)=>setEmail(e.target.value)}
                 required
               />
             </div>
@@ -69,6 +99,8 @@ const Register = () => {
               <input
                 type="password"
                 placeholder="Create a password"
+                value={password}
+                onChange={(e)=>setPassword(e.target.value)}
                 required
                 minLength={8}
               />
@@ -81,7 +113,7 @@ const Register = () => {
           </form>
 
           <p className="auth-switch">
-            Already have an account? <a href="/login">Login</a>
+            Already have an account? <Link to="/login">Login</Link>
           </p>
 
         </div>
