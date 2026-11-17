@@ -10,10 +10,12 @@ const Login = () => {
   const [email, setEmail] = useState("");
 const [password, setPassword] = useState("");
 const [error ,setError] = useState("");
+const [loading,setLoading] = useState("");
 
 const handleSubmit = async (e) => {
   e.preventDefault();
   setError("");
+  setLoading(true)
 
   try {
     const data = await loginUser({
@@ -29,6 +31,8 @@ const handleSubmit = async (e) => {
 
   } catch (error) {
     setError( error.message);
+  }finally {
+    setLoading(false)
   }
 };
 
@@ -95,8 +99,10 @@ const handleSubmit = async (e) => {
               />
             </div>
 
-            <button type="submit" className="auth-button">
-              Login
+            <button type="submit" className="auth-button"
+              disabled={loading}
+              >
+              {loading ? "Logging in...":"Login"}
             </button>
 
           </form>
