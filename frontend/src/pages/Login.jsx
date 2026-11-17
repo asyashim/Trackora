@@ -9,9 +9,11 @@ const Login = () => {
 
   const [email, setEmail] = useState("");
 const [password, setPassword] = useState("");
+const [error ,setError] = useState("");
 
 const handleSubmit = async (e) => {
   e.preventDefault();
+  setError("");
 
   try {
     const data = await loginUser({
@@ -26,7 +28,7 @@ const handleSubmit = async (e) => {
     navigate("/dashboard");
 
   } catch (error) {
-    console.error("Login failed:", error.message);
+    setError( error.message);
   }
 };
 
@@ -68,6 +70,8 @@ const handleSubmit = async (e) => {
           </p>
 
           <form onSubmit={handleSubmit}>
+
+             {error && <p className="error-message">{error}</p>}
 
             <div className="form-group">
               <label>Email Address</label>
