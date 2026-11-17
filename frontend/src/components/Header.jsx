@@ -1,7 +1,16 @@
 
 import React from "react";
+import {useNavigate} from "react-router-dom"
 
 const Header = () => {
+
+   const navigate = useNavigate();
+
+  const handleLogout = () => {
+    localStorage.removeItem("token");
+    navigate("/login");
+  };
+
   return (
     <header className="topbar">
       <div>
@@ -19,6 +28,10 @@ const Header = () => {
           <strong>My Workspace</strong>
           <p>Job Seeker</p>
         </div>
+
+        <button className="logout-button" onClick={handleLogout}>
+          Logout
+        </button>
       </div>
     </header>
   );
