@@ -25,7 +25,7 @@ const handleSubmit = async (e) => {
 
     console.log(data.message);
     console.log(data.user);
-    console.log(data.token);
+    localStorage.setItem("token", data.token);
 
     navigate("/dashboard");
 
