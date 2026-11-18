@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import Sidebar from "../components/Sidebar";
 import Header from "../components/Header";
 import StatCard from "../components/StatCard";
+import { getJobs } from "../api/jobApi";
 import ApplicationsTable from "../components/ApplicationsTable";
 import './Dashboard.css'
 
@@ -15,14 +16,10 @@ const Dashboard = () => {
   useEffect(() => {
     const fetchJobs = async () => {
       try {
-        const response = await fetch("http://localhost:5000/api/jobs");
 
-        if (!response.ok) {
-          throw new Error("Failed to fetch applications");
-        }
-
-        const data = await response.json();
+        const data = await getJobs();
         setJobs(data.jobs);
+     
       } catch (error) {
         setError(error.message);
       } finally {
