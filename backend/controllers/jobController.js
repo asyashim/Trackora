@@ -70,3 +70,37 @@ export const deleteJob = async(req,res)=>{
 
     }
 }
+
+export const updateJob = async (req, res) => {
+  try {
+    const { id } = req.params;
+
+    const updatedJob = await Job.findByIdAndUpdate(
+      id,
+      req.body,
+      {
+        new: true,
+        runValidators: true,
+      }
+    );
+
+    if (!updatedJob) {
+      return res.status(404).json({
+        success: false,
+        message: "Job application not found",
+      });
+    }
+
+    res.status(200).json({
+      success: true,
+      message: "Job application updated successfully",
+      job: updatedJob,
+    });
+
+  } catch (error) {
+    res.status(500).json({
+      success: false,
+      message: "Failed to update job application",
+    });
+  }
+};
