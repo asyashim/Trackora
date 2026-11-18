@@ -4,6 +4,7 @@ import cors from "cors";
 import dotenv from "dotenv";
 import connectDB from "./config/db.js";
 import authRoutes from "./routes/authRoutes.js";
+import jobRoutes from "./routes/jobRoutes.js";
 
 // Load environment variables
 dotenv.config();
@@ -15,28 +16,10 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 app.use("/api/auth", authRoutes);
+app.use("/api/jobs", jobRoutes);
 
-// Temporary jobs array
-const jobs = [
-  {
-    id: 1,
-    company: "Google",
-    position: "Frontend Developer",
-    status: "Applied",
-  },
-  {
-    id: 2,
-    company: "Amazon",
-    position: "Backend Developer",
-    status: "Interview",
-  },
-  {
-    id: 3,
-    company: "Microsoft",
-    position: "Full Stack Developer",
-    status: "Rejected",
-  },
-];
+
+
 
 // Welcome API
 app.get("/", (req, res) => {
@@ -59,26 +42,9 @@ app.get("/api/test", (req, res) => {
   });
 });
 
-// Get all jobs
-app.get("/api/jobs", (req, res) => {
-  res.json({
-    success: true,
-    jobs: jobs,
-  });
-});
 
-// Add a job
-app.post("/api/jobs", (req, res) => {
-  const newJob = req.body;
 
-  jobs.push(newJob);
 
-  res.status(201).json({
-    success: true,
-    message: "Job application added successfully",
-    job: newJob,
-  });
-});
 
 // Start server after MongoDB connection
 const PORT = process.env.PORT || 5000;
