@@ -2,6 +2,9 @@
 import React from "react";
 
 const Sidebar = () => {
+
+  const user = JSON.parse(localStorage.getItem("user"));
+
   return (
     <aside className="sidebar">
       <h2 className="logo">
@@ -17,8 +20,19 @@ const Sidebar = () => {
       </nav>
 
       <div className="sidebar-bottom">
-        <div className="nav-item">⚙ Settings</div>
-      </div>
+  <div className="user-info">
+    <div className="avatar">
+      {user?.name?.charAt(0).toUpperCase() || "U"}
+    </div>
+
+    <div>
+      <strong>{user?.name || "User"}</strong>
+      <p>{user?.email || "Job Seeker"}</p>
+    </div>
+  </div>
+
+  <div className="nav-item">⚙ Settings</div>
+</div>
     </aside>
   );
 };
