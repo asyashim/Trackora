@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import Sidebar from "../components/Sidebar";
 import Header from "../components/Header";
 import StatCard from "../components/StatCard";
+import AddJob from "../components/AddJob";
 import { getJobs } from "../api/jobApi";
 import ApplicationsTable from "../components/ApplicationsTable";
 import './Dashboard.css'
@@ -50,6 +51,12 @@ const Dashboard = () => {
 
       <main className="main-content">
         <Header />
+
+        <AddJob
+  onJobAdded={(newJob) => {
+    setJobs((prevJobs) => [...prevJobs, newJob]);
+  }}
+/>
 
         <section className="stats-grid">
           <StatCard

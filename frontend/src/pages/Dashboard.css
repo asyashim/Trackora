@@ -355,6 +355,85 @@ td {
   padding: 20px 0;
 }
 
+
+/* Add Job Form */
+
+.add-job-section {
+  background: white;
+  padding: 25px;
+  border-radius: 12px;
+  border: 1px solid #eceef3;
+  box-shadow: 0 3px 12px rgba(20, 25, 40, 0.03);
+  margin-bottom: 30px;
+}
+
+.add-job-section h2 {
+  font-size: 19px;
+  color: #252c3e;
+  margin-bottom: 20px;
+}
+
+.add-job-form {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 15px;
+}
+
+.add-job-form input,
+.add-job-form select {
+  width: 100%;
+  padding: 12px 14px;
+  background-color: #f5f6fa;
+  border: 1px solid #e0e3eb;
+  border-radius: 8px;
+  font-size: 14px;
+  color: #252c3e;
+  outline: none;
+  transition: all 0.3s ease;
+}
+
+.add-job-form input:focus,
+.add-job-form select:focus {
+  background-color: #ffffff;
+  border-color: #6c63ff;
+  box-shadow: 0 0 0 3px rgba(108, 99, 255, 0.12);
+}
+
+.add-job-form button {
+  grid-column: 1 / -1;
+  padding: 12px;
+  background: #6c63ff;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.add-job-form button:hover {
+  background: #574fe0;
+}
+
+.add-job-message {
+  color: #16834a;
+  font-size: 13px;
+  margin-bottom: 12px;
+}
+
+.add-job-error {
+  color: #dc4b4b;
+  font-size: 13px;
+  margin-bottom: 12px;
+}
+
+@media (max-width: 900px) {
+  .add-job-form {
+    grid-template-columns: 1fr;
+  }
+}
+
+
 /* Responsive Design */
 
 @media (max-width: 1100px) {
