@@ -6,8 +6,11 @@ const Header = () => {
 
    const navigate = useNavigate();
 
+   const user = JSON.parse(localStorage.getItem("user"));
+
   const handleLogout = () => {
     localStorage.removeItem("token");
+    localStorage.removeItem("user");
     navigate("/login");
   };
 
@@ -25,8 +28,8 @@ const Header = () => {
         <div className="avatar">U</div>
 
         <div>
-          <strong>My Workspace</strong>
-          <p>Job Seeker</p>
+          <strong>{user?.name||"User"}</strong>
+          <p>{user?.email||"Job Seeker"}</p>
         </div>
 
         <button className="logout-button" onClick={handleLogout}>

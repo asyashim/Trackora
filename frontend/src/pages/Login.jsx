@@ -25,9 +25,12 @@ const handleSubmit = async (e) => {
 
     console.log(data.message);
     console.log(data.user);
-    localStorage.setItem("token", data.token);
 
-    navigate("/dashboard");
+    localStorage.setItem("token", data.token);
+localStorage.setItem("user", JSON.stringify(data.user));
+    
+
+ navigate("/dashboard");
 
   } catch (error) {
     setError( error.message);
