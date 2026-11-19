@@ -1,7 +1,19 @@
 
-import React from "react";
 
-const ApplicationsTable = ({ jobs, loading, error }) => {
+import { deleteJob } from "../api/jobApi";
+
+const ApplicationsTable = ({ jobs, loading, error, onJobDeleted }) => {
+
+  const handleDelete = async (id) => {
+  try {
+    await deleteJob(id);
+
+    onJobDeleted(id);
+
+  } catch (error) {
+    console.log(error.message);
+  }
+};
   return (
     <section className="applications-section">
       <div className="section-heading">
@@ -28,6 +40,8 @@ const ApplicationsTable = ({ jobs, loading, error }) => {
                 <th>POSITION</th>
                 <th>STATUS</th>
                 <th>DATE</th>
+                <th>ACTION</th>
+                
               </tr>
             </thead>
 
@@ -54,11 +68,19 @@ const ApplicationsTable = ({ jobs, loading, error }) => {
                     </td>
 
                     <td>{job.date || "—"}</td>
+
+                    <td>
+  <button className="delete-btn"
+  onClick={()=>handleDelete(job._id)}>
+    Delete
+  </button>
+</td>
+
                   </tr>
                 ))
               ) : (
                 <tr>
-                  <td colSpan="4" className="empty-state">
+                  <td colSpan="5" className="empty-state">
                     No applications yet. Add your first job application!
                   </td>
                 </tr>

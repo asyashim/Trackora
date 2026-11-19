@@ -355,6 +355,25 @@ td {
   padding: 20px 0;
 }
 
+/* Delete Button */
+.delete-btn {
+  padding: 7px 14px;
+  background-color: #fff0f0;
+  color: #dc4b4b;
+  border: 1px solid #ffd6d6;
+  border-radius: 6px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.delete-btn:hover {
+  background-color: #dc4b4b;
+  color: white;
+  border-color: #dc4b4b;
+}
+
 
 /* Add Job Form */
 

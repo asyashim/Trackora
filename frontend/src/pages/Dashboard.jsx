@@ -96,6 +96,11 @@ const Dashboard = () => {
           jobs={jobs}
           loading={loading}
           error={error}
+          onJobDeleted={(id) => {
+    setJobs((prevJobs) =>
+      prevJobs.filter((job) => job._id !== id)
+    );
+  }}
         />
       </main>
     </div>

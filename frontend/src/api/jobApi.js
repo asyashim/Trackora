@@ -10,3 +10,9 @@ export const createJob = async (jobData) => {
     body: JSON.stringify(jobData),
   });
 };
+
+export const deleteJob = async (id) => {
+  return await apiRequest(`/jobs/${id}`, {
+    method: "DELETE",
+  });
+};
