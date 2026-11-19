@@ -427,6 +427,34 @@ td {
   background: #574fe0;
 }
 
+/* Search Box */
+.search-box {
+  margin-bottom: 20px;
+}
+
+.search-box input {
+  width: 100%;
+  max-width: 350px;
+  padding: 12px 15px;
+  background-color: #f5f6fa;
+  border: 1px solid #e0e3eb;
+  border-radius: 8px;
+  font-size: 14px;
+  color: #252c3e;
+  outline: none;
+  transition: all 0.3s ease;
+}
+
+.search-box input:focus {
+  background-color: #ffffff;
+  border-color: #6c63ff;
+  box-shadow: 0 0 0 3px rgba(108, 99, 255, 0.12);
+}
+
+.search-box input::placeholder {
+  color: #9a9eae;
+}
+
 /* Cancel Button */
 .cancel-btn {
   padding: 10px 18px;

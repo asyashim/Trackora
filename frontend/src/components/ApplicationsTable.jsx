@@ -8,6 +8,11 @@ const ApplicationsTable = ({ jobs, loading, error, onJobDeleted,onJobUpdated }) 
   const [company, setCompany] = useState("");
   const [position, setPosition] = useState("");
   const [status, setStatus] = useState("Applied");
+  const [searchTerm , setSearchTerm] =useState("");
+
+  const filteredJobs = jobs.filter((job) =>
+  job.company.toLowerCase().includes(searchTerm.toLowerCase())
+);
 
   const handleDelete = async (id) => {
   try {
@@ -40,6 +45,14 @@ const handleUpdate = async () => {
 };
   return (
     <section className="applications-section">
+      <div className="search-box">
+  <input
+    type="text"
+    placeholder="Search by company name..."
+    value={searchTerm}
+    onChange={(e) => setSearchTerm(e.target.value)}
+  />
+</div>
       <div className="section-heading">
         <div>
           <h2>Recent Applications</h2>
@@ -116,8 +129,8 @@ const handleUpdate = async () => {
             </thead>
 
             <tbody>
-              {jobs.length > 0 ? (
-                jobs.map((job, index) => (
+              {filteredJobs.length > 0 ? (
+                filteredJobs.map((job, index) => (
                   <tr key={job.id || index}>
                     <td>
                       <strong className="company-name">
