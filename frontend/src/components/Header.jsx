@@ -19,9 +19,7 @@ const Header = () => {
       <div>
         <p className="welcome-text">WELCOME BACK</p>
         
-        <p className="subtitle">
-          Here's an overview of your job search progress.
-        </p>
+       
       </div>
 
       <div className="profile">
