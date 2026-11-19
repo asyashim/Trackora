@@ -9,10 +9,18 @@ const ApplicationsTable = ({ jobs, loading, error, onJobDeleted,onJobUpdated }) 
   const [position, setPosition] = useState("");
   const [status, setStatus] = useState("Applied");
   const [searchTerm , setSearchTerm] =useState("");
+  const [statusFilter, setStatusFilter] = useState("All");
 
-  const filteredJobs = jobs.filter((job) =>
-  job.company.toLowerCase().includes(searchTerm.toLowerCase())
-);
+  const filteredJobs = jobs.filter((job) => {
+  const matchesSearch = job.company
+    .toLowerCase()
+    .includes(searchTerm.toLowerCase());
+
+  const matchesStatus =
+    statusFilter === "All" || job.status === statusFilter;
+
+  return matchesSearch && matchesStatus;
+});
 
   const handleDelete = async (id) => {
   try {
@@ -45,19 +53,34 @@ const handleUpdate = async () => {
 };
   return (
     <section className="applications-section">
-      <div className="search-box">
-  <input
-    type="text"
-    placeholder="Search by company name..."
-    value={searchTerm}
-    onChange={(e) => setSearchTerm(e.target.value)}
-  />
+      
+
+<div className="search-filter-container">
+
+  <div className="search-box">
+    <input
+      type="text"
+      placeholder="Search by company name..."
+      value={searchTerm}
+      onChange={(e) => setSearchTerm(e.target.value)}
+    />
+  </div>
+
+  <div className="filter-box">
+    <select
+      value={statusFilter}
+      onChange={(e) => setStatusFilter(e.target.value)}
+    >
+      <option value="All">All</option>
+      <option value="Applied">Applied</option>
+      <option value="Interview">Interview</option>
+      <option value="Rejected">Rejected</option>
+    </select>
+  </div>
+
 </div>
       <div className="section-heading">
-        <div>
-          <h2>Recent Applications</h2>
-          <p>Keep track of your latest job applications.</p>
-        </div>
+        
 
         <span className="application-count">
           {jobs.length} applications

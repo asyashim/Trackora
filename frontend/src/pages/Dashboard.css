@@ -258,15 +258,7 @@
   margin-bottom: 25px;
 }
 
-.section-heading h2 {
-  font-size: 19px;
-  margin-bottom: 7px;
-}
 
-.section-heading p {
-  color: #858ba0;
-  font-size: 13px;
-}
 
 .application-count {
   background: #f0efff;
@@ -427,6 +419,31 @@ td {
   background: #574fe0;
 }
 
+/* Status Filter */
+.filter-box {
+  margin-bottom: 20px;
+}
+
+.filter-box select {
+  width: 100%;
+  max-width: 220px;
+  padding: 12px 15px;
+  background-color: #f5f6fa;
+  border: 1px solid #e0e3eb;
+  border-radius: 8px;
+  font-size: 14px;
+  color: #252c3e;
+  outline: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.filter-box select:focus {
+  background-color: #ffffff;
+  border-color: #6c63ff;
+  box-shadow: 0 0 0 3px rgba(108, 99, 255, 0.12);
+}
+
 /* Search Box */
 .search-box {
   margin-bottom: 20px;
@@ -453,6 +470,26 @@ td {
 
 .search-box input::placeholder {
   color: #9a9eae;
+}
+
+.search-filter-container {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin-bottom: 20px;
+}
+
+.search-box,
+.filter-box {
+  margin-bottom: 0;
+}
+
+.search-box input {
+  width: 350px;
+}
+
+.filter-box select {
+  width: 220px;
 }
 
 /* Cancel Button */
@@ -611,5 +648,18 @@ td {
   .section-heading {
     align-items: flex-start;
     flex-direction: column;
+  }
+}
+
+@media (max-width: 600px) {
+  .search-filter-container {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .search-box input,
+  .filter-box select {
+    width: 100%;
+    max-width: 100%;
   }
 }
