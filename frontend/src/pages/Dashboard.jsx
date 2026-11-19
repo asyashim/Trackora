@@ -101,6 +101,14 @@ const Dashboard = () => {
       prevJobs.filter((job) => job._id !== id)
     );
   }}
+
+  onJobUpdated={(id, updatedJob) => {
+  setJobs((prevJobs) =>
+    prevJobs.map((job) =>
+      job._id === id ? { ...job, ...updatedJob } : job
+    )
+  );
+}}
         />
       </main>
     </div>

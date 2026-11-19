@@ -1,14 +1,38 @@
 
+import {useState} from "react"
+import { deleteJob,updateJob } from "../api/jobApi";
 
-import { deleteJob } from "../api/jobApi";
+const ApplicationsTable = ({ jobs, loading, error, onJobDeleted,onJobUpdated }) => {
 
-const ApplicationsTable = ({ jobs, loading, error, onJobDeleted }) => {
+  const [editingJob , setEditingJob] =useState(null);
+  const [company, setCompany] = useState("");
+  const [position, setPosition] = useState("");
+  const [status, setStatus] = useState("Applied");
 
   const handleDelete = async (id) => {
   try {
     await deleteJob(id);
 
     onJobDeleted(id);
+
+  } catch (error) {
+    console.log(error.message);
+  }
+};
+
+const handleUpdate = async () => {
+  try {
+    const jobData = {
+      company,
+      position,
+      status,
+    };
+
+    await updateJob(editingJob._id, jobData);
+
+    onJobUpdated(editingJob._id, jobData);
+
+    setEditingJob(null);
 
   } catch (error) {
     console.log(error.message);
@@ -30,6 +54,52 @@ const ApplicationsTable = ({ jobs, loading, error, onJobDeleted }) => {
       {loading && <p className="message">Loading applications...</p>}
 
       {error && <p className="error-message">{error}</p>}
+
+   {editingJob && (
+  <div className="edit-job-form">
+    <h3>Edit Job Application</h3>
+
+    <input
+      type="text"
+      value={company}
+      onChange={(e) => setCompany(e.target.value)}
+      placeholder="Company Name"
+    />
+
+    <input
+      type="text"
+      value={position}
+      onChange={(e) => setPosition(e.target.value)}
+      placeholder="Job Position"
+    />
+
+    <select
+      value={status}
+      onChange={(e) => setStatus(e.target.value)}
+    >
+      <option value="Applied">Applied</option>
+      <option value="Interview">Interview</option>
+      <option value="Rejected">Rejected</option>
+    </select>
+
+    <button
+  type="button"
+  className="save-btn"
+  onClick={handleUpdate}
+>
+  Save Changes
+</button>
+
+<button
+  type="button"
+  className="cancel-btn"
+  onClick={() => setEditingJob(null)}
+>
+  Cancel
+</button>
+
+  </div>
+)}
 
       {!loading && !error && (
         <div className="table-wrapper">
@@ -74,6 +144,21 @@ const ApplicationsTable = ({ jobs, loading, error, onJobDeleted }) => {
   onClick={()=>handleDelete(job._id)}>
     Delete
   </button>
+
+  
+  
+  <button
+  className="edit-btn"
+  onClick={() => {
+    setEditingJob(job);
+    setCompany(job.company);
+    setPosition(job.position);
+    setStatus(job.status);
+  }}
+>
+  Edit
+</button>
+
 </td>
 
                   </tr>

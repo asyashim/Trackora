@@ -16,3 +16,10 @@ export const deleteJob = async (id) => {
     method: "DELETE",
   });
 };
+
+export const updateJob = async (id, jobData) => {
+  return await apiRequest(`/jobs/${id}`, {
+    method: "PUT",
+    body: JSON.stringify(jobData),
+  });
+};
