@@ -1,11 +1,22 @@
-/* Main Dashboard */
+
+/* =================================
+   1. Main Dashboard Layout
+================================= */
 
 .dashboard {
   display: flex;
   min-height: 100vh;
 }
 
-/* Sidebar */
+.main-content {
+  flex: 1;
+  padding: 35px;
+  min-width: 0;
+}
+
+/* =================================
+   2. Sidebar
+================================= */
 
 .sidebar {
   width: 240px;
@@ -57,6 +68,9 @@
   margin-top: auto;
 }
 
+/* =================================
+   3. User Information
+================================= */
 
 .user-info {
   display: flex;
@@ -90,16 +104,9 @@
   margin: 4px 0 0;
 }
 
-
-/* Main Content */
-
-.main-content {
-  flex: 1;
-  padding: 35px;
-  min-width: 0;
-}
-
-/* Header */
+/* =================================
+   4. Dashboard Header
+================================= */
 
 .topbar {
   display: flex;
@@ -112,9 +119,8 @@
 .welcome-text {
   background: linear-gradient(90deg, #6c63ff, #a78bfa);
   background-clip: text;
- -webkit-background-clip: text;
- -webkit-text-fill-color: transparent;
-
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
   font-size: 41px;
   font-weight: 800;
   letter-spacing: 1.5px;
@@ -126,8 +132,6 @@
   font-size: 28px;
   margin-bottom: 7px;
 }
-
-
 
 .profile {
   display: flex;
@@ -157,7 +161,6 @@
   font-weight: bold;
 }
 
-
 .logout-button {
   background-color: #ef4444;
   color: white;
@@ -174,8 +177,9 @@
   background-color: #dc2626;
 }
 
-
-/* Statistics Cards */
+/* =================================
+   5. Statistics Cards
+================================= */
 
 .stats-grid {
   display: grid;
@@ -229,20 +233,21 @@
   margin-bottom: 10px;
 }
 
- .stat-card h2 {
+.stat-card h2 {
   font-size: 29px;
   font-weight: 700;
   color: #252c3e;
   margin-bottom: 8px;
 }
- 
 
 .stat-card span {
   color: #5a6483;
   font-size: 12px;
 }
 
-/* Applications Section */
+/* =================================
+   6. Applications Section
+================================= */
 
 .applications-section {
   background: white;
@@ -260,8 +265,6 @@
   margin-bottom: 25px;
 }
 
-
-
 .application-count {
   background: #f0efff;
   color: #6c63ff;
@@ -270,7 +273,68 @@
   font-size: 12px;
 }
 
-/* Table */
+/* =================================
+   7. Search, Filter and Sort
+================================= */
+
+.search-filter-container {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin-bottom: 20px;
+  width: 100%;
+  flex-wrap: wrap;
+}
+
+.search-box {
+  flex: 1 1 260px;
+  min-width: 0;
+  margin-bottom: 0;
+}
+
+.filter-box,
+.sort-box {
+  flex: 0 1 200px;
+  min-width: 0;
+  margin-bottom: 0;
+}
+
+.search-box input,
+.filter-box select,
+.sort-box select {
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+  padding: 12px 15px;
+  background-color: #f5f6fa;
+  border: 1px solid #e0e3eb;
+  border-radius: 8px;
+  font-size: 14px;
+  color: #252c3e;
+  outline: none;
+  transition: all 0.3s ease;
+}
+
+.search-box input:focus,
+.filter-box select:focus,
+.sort-box select:focus {
+  background-color: #ffffff;
+  border-color: #6c63ff;
+  box-shadow: 0 0 0 3px rgba(108, 99, 255, 0.12);
+}
+
+.search-box input::placeholder {
+  color: #9a9eae;
+}
+
+.filter-box select,
+.sort-box select {
+  cursor: pointer;
+}
+
+/* =================================
+   8. Applications Table
+================================= */
 
 .table-wrapper {
   width: 100%;
@@ -349,26 +413,10 @@ td {
   padding: 20px 0;
 }
 
-/* Delete Button */
-.delete-btn {
-  padding: 7px 14px;
-  background-color: #fff0f0;
-  color: #dc4b4b;
-  border: 1px solid #ffd6d6;
-  border-radius: 6px;
-  font-size: 13px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: all 0.3s ease;
-}
+/* =================================
+   9. Edit Job Form
+================================= */
 
-.delete-btn:hover {
-  background-color: #dc4b4b;
-  color: white;
-  border-color: #dc4b4b;
-}
-
-/* Edit Job Form */
 .edit-job-form {
   background: #ffffff;
   padding: 22px;
@@ -404,7 +452,12 @@ td {
   box-shadow: 0 0 0 3px rgba(108, 99, 255, 0.12);
 }
 
+/* =================================
+   10. Buttons
+================================= */
+
 /* Save Button */
+
 .save-btn {
   padding: 10px 18px;
   background: #6c63ff;
@@ -421,80 +474,8 @@ td {
   background: #574fe0;
 }
 
-/* Status Filter */
-.filter-box {
-  margin-bottom: 20px;
-}
-
-.filter-box select {
-  width: 100%;
-  max-width: 220px;
-  padding: 12px 15px;
-  background-color: #f5f6fa;
-  border: 1px solid #e0e3eb;
-  border-radius: 8px;
-  font-size: 14px;
-  color: #252c3e;
-  outline: none;
-  cursor: pointer;
-  transition: all 0.3s ease;
-}
-
-.filter-box select:focus {
-  background-color: #ffffff;
-  border-color: #6c63ff;
-  box-shadow: 0 0 0 3px rgba(108, 99, 255, 0.12);
-}
-
-/* Search Box */
-.search-box {
-  margin-bottom: 20px;
-}
-
-.search-box input {
-  width: 100%;
-  max-width: 350px;
-  padding: 12px 15px;
-  background-color: #f5f6fa;
-  border: 1px solid #e0e3eb;
-  border-radius: 8px;
-  font-size: 14px;
-  color: #252c3e;
-  outline: none;
-  transition: all 0.3s ease;
-}
-
-.search-box input:focus {
-  background-color: #ffffff;
-  border-color: #6c63ff;
-  box-shadow: 0 0 0 3px rgba(108, 99, 255, 0.12);
-}
-
-.search-box input::placeholder {
-  color: #9a9eae;
-}
-
-.search-filter-container {
-  display: flex;
-  align-items: center;
-  gap: 15px;
-  margin-bottom: 20px;
-}
-
-.search-box,
-.filter-box {
-  margin-bottom: 0;
-}
-
-.search-box input {
-  width: 350px;
-}
-
-.filter-box select {
-  width: 220px;
-}
-
 /* Cancel Button */
+
 .cancel-btn {
   padding: 10px 18px;
   background: #f1f2f6;
@@ -511,6 +492,7 @@ td {
 }
 
 /* Edit Button */
+
 .edit-btn {
   padding: 7px 14px;
   background: #eeedff;
@@ -529,8 +511,29 @@ td {
   color: #ffffff;
 }
 
+/* Delete Button */
 
-/* Add Job Form */
+.delete-btn {
+  padding: 7px 14px;
+  background-color: #fff0f0;
+  color: #dc4b4b;
+  border: 1px solid #ffd6d6;
+  border-radius: 6px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.delete-btn:hover {
+  background-color: #dc4b4b;
+  color: white;
+  border-color: #dc4b4b;
+}
+
+/* =================================
+   11. Add Job Form
+================================= */
 
 .add-job-section {
   background: white;
@@ -556,6 +559,7 @@ td {
 .add-job-form input,
 .add-job-form select {
   width: 100%;
+  box-sizing: border-box;
   padding: 12px 14px;
   background-color: #f5f6fa;
   border: 1px solid #e0e3eb;
@@ -601,18 +605,19 @@ td {
   margin-bottom: 12px;
 }
 
-@media (max-width: 900px) {
-  .add-job-form {
-    grid-template-columns: 1fr;
-  }
-}
-
-
-/* Responsive Design */
+/* =================================
+   12. Responsive Design
+================================= */
 
 @media (max-width: 1100px) {
   .stats-grid {
     grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 900px) {
+  .add-job-form {
+    grid-template-columns: 1fr;
   }
 }
 
@@ -623,6 +628,7 @@ td {
 
   .sidebar {
     width: 100%;
+    box-sizing: border-box;
     padding: 18px;
   }
 
@@ -659,8 +665,16 @@ td {
     align-items: stretch;
   }
 
+  .search-box,
+  .filter-box,
+  .sort-box {
+    width: 100%;
+    flex: none;
+  }
+
   .search-box input,
-  .filter-box select {
+  .filter-box select,
+  .sort-box select {
     width: 100%;
     max-width: 100%;
   }

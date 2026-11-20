@@ -10,6 +10,7 @@ const ApplicationsTable = ({ jobs, loading, error, onJobDeleted,onJobUpdated }) 
   const [status, setStatus] = useState("Applied");
   const [searchTerm , setSearchTerm] =useState("");
   const [statusFilter, setStatusFilter] = useState("All");
+  const [sortOrder, setSortOrder] = useState("newest");
 
   const filteredJobs = jobs.filter((job) => {
   const matchesSearch = job.company
@@ -20,6 +21,26 @@ const ApplicationsTable = ({ jobs, loading, error, onJobDeleted,onJobUpdated }) 
     statusFilter === "All" || job.status === statusFilter;
 
   return matchesSearch && matchesStatus;
+});
+
+const sortedJobs = [...filteredJobs].sort((a, b) => {
+  if (sortOrder === "newest") {
+    return new Date(b.createdAt) - new Date(a.createdAt);
+  }
+
+  if (sortOrder === "oldest") {
+    return new Date(a.createdAt) - new Date(b.createdAt);
+  }
+
+  if (sortOrder === "az") {
+    return a.company.localeCompare(b.company);
+  }
+
+  if (sortOrder === "za") {
+    return b.company.localeCompare(a.company);
+  }
+
+  return 0;
 });
 
   const handleDelete = async (id) => {
@@ -77,6 +98,18 @@ const handleUpdate = async () => {
       <option value="Rejected">Rejected</option>
     </select>
   </div>
+
+  <div className="sort-box">
+  <select
+    value={sortOrder}
+    onChange={(e) => setSortOrder(e.target.value)}
+  >
+    <option value="newest">Newest First</option>
+    <option value="oldest">Oldest First</option>
+    <option value="az">Company (A-Z)</option>
+    <option value="za">Company (Z-A)</option>
+  </select>
+</div>
 
 </div>
       <div className="section-heading">
@@ -152,8 +185,8 @@ const handleUpdate = async () => {
             </thead>
 
             <tbody>
-              {filteredJobs.length > 0 ? (
-                filteredJobs.map((job, index) => (
+              {sortedJobs.length > 0 ? (
+                sortedJobs.map((job, index) => (
                   <tr key={job.id || index}>
                     <td>
                       <strong className="company-name">
