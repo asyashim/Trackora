@@ -1,9 +1,9 @@
 
-import Job from "../models/Job.js";
+import Job from "../models/job.js";
 
 export const getJobs = async (req, res) => {
   try {
-    const jobs = await Job.find();
+    const jobs = await Job.find({user:req.user.id,});
 
     res.status(200).json({
       success: true,
@@ -11,9 +11,12 @@ export const getJobs = async (req, res) => {
     });
 
   } catch (error) {
+
+     
     res.status(500).json({
       success: false,
       message: "Failed to fetch job applications",
+      
     });
   }
 };
@@ -22,10 +25,12 @@ export const createJob = async(req,res)=>{
     try{
         const {company,position,status} =req.body;
 
+
         const newJob= await Job.create({
             company,
             position,
             status,
+            user:req.user.id,
         })
 
         res.status(201).json({
@@ -35,9 +40,12 @@ export const createJob = async(req,res)=>{
         })
 
     }catch(error){
+
+    
         res.status(500).json({
             success:false,
             message:"Failed to add job application",
+            
         })
 
     }
@@ -48,7 +56,10 @@ export const deleteJob = async(req,res)=>{
 
         const {id} = req.params;
 
-        const deletedJob= await Job.findById(id);
+        const deletedJob= await Job.findById({
+          _id:id,
+          user:req.user.id,
+        });
 
         if(!deletedJob){
             return res.status(400).json({
@@ -75,8 +86,10 @@ export const updateJob = async (req, res) => {
   try {
     const { id } = req.params;
 
-    const updatedJob = await Job.findByIdAndUpdate(
+    const updatedJob = await Job.findByIdAndUpdate({
       id,
+      user:req.user.id,
+    },
       req.body,
       {
         new: true,
