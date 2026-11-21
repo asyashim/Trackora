@@ -15,8 +15,18 @@ const Sidebar = () => {
       <p className="menu-label">MENU</p>
 
       <nav className="sidebar-nav">
-        <div className="nav-item active">▦ Overview</div>
-        <div className="nav-item">▤ Applications</div>
+        <NavLink
+  to="/dashboard"
+  end
+  className={({ isActive }) =>
+    `nav-item ${isActive ? "active" : ""}`
+  }
+>
+  ▦ Overview
+</NavLink>
+        <a href="#applications" className="nav-item">
+  ▤ Applications
+</a>
 
           <NavLink
     to="/resumes"

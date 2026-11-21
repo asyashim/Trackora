@@ -92,27 +92,31 @@ const Dashboard = () => {
           />
         </section>
 
-        <ApplicationsTable
-          jobs={jobs}
-          loading={loading}
-          error={error}
-          onJobDeleted={(id) => {
-    setJobs((prevJobs) =>
-      prevJobs.filter((job) => job._id !== id)
-    );
-  }}
+        <section id="applications" className="applications-section">
+  <ApplicationsTable
+    jobs={jobs}
+    loading={loading}
+    error={error}
+    onJobDeleted={(id) => {
+      setJobs((prevJobs) =>
+        prevJobs.filter((job) => job._id !== id)
+      );
+    }}
+    onJobUpdated={(id, updatedJob) => {
+      setJobs((prevJobs) =>
+        prevJobs.map((job) =>
+          job._id === id ? { ...job, ...updatedJob } : job
+        )
+      );
+    }}
+  />
+</section>
 
-  onJobUpdated={(id, updatedJob) => {
-  setJobs((prevJobs) =>
-    prevJobs.map((job) =>
-      job._id === id ? { ...job, ...updatedJob } : job
-    )
-  );
-}}
-        />
-      </main>
+  </main>
     </div>
   );
 };
 
-export default Dashboard;
+export default Dashboard;      
+
+ 
