@@ -1,0 +1,363 @@
+
+/* ==============================
+   Resume Manager Page
+================================= */
+
+.resume-manager {
+  padding: 30px;
+  min-height: 100vh;
+  background: #f8fafc;
+  color: #1e293b;
+}
+
+/* ==============================
+   Page Header
+================================= */
+
+.resume-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+.resume-header h1 {
+  font-size: 28px;
+  font-weight: 700;
+  color: #0f172a;
+  margin-bottom: 8px;
+}
+
+.resume-header p {
+  color: #64748b;
+  font-size: 14px;
+}
+
+/* ==============================
+   Upload Form
+================================= */
+
+.resume-upload-form {
+  background: #ffffff;
+  padding: 28px;
+  border-radius: 14px;
+  max-width: 650px;
+  margin-bottom: 35px;
+  border: 1px solid #e2e8f0;
+  box-shadow: 0 4px 15px rgba(15, 23, 42, 0.04);
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.resume-upload-form h2 {
+  font-size: 20px;
+  font-weight: 600;
+  color: #0f172a;
+  margin-bottom: 5px;
+}
+
+.resume-upload-form div {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.resume-upload-form label {
+  font-size: 14px;
+  font-weight: 600;
+  color: #334155;
+}
+
+.resume-upload-form input {
+  width: 100%;
+  padding: 12px 14px;
+  border: 1px solid #cbd5e1;
+  border-radius: 8px;
+  font-size: 14px;
+  outline: none;
+  transition: 0.2s ease;
+  background: #ffffff;
+  color: #1e293b;
+}
+
+.resume-upload-form input:focus {
+  border-color: #6366f1;
+  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.12);
+}
+
+/* Upload Button */
+
+.resume-upload-form button {
+  padding: 12px 18px;
+  background: #4f46e5;
+  color: #ffffff;
+  border: none;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.2s ease;
+  align-self: flex-start;
+}
+
+.resume-upload-form button:hover:not(:disabled) {
+  background: #4338ca;
+  transform: translateY(-1px);
+}
+
+.resume-upload-form button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* ==============================
+   Resume Section
+================================= */
+
+.resume-section h2 {
+  font-size: 21px;
+  font-weight: 700;
+  color: #0f172a;
+  margin-bottom: 20px;
+}
+
+.resume-section > p {
+  color: #64748b;
+  font-size: 14px;
+}
+
+/* ==============================
+   Resume Cards
+================================= */
+
+.resume-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 20px;
+}
+
+.resume-card {
+  background: #ffffff;
+  padding: 22px;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(15, 23, 42, 0.04);
+  transition: 0.2s ease;
+}
+
+.resume-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(15, 23, 42, 0.08);
+}
+
+.resume-card h3 {
+  font-size: 17px;
+  font-weight: 700;
+  color: #1e293b;
+  margin-bottom: 15px;
+  overflow-wrap: anywhere;
+}
+
+.resume-card p {
+  font-size: 13px;
+  color: #64748b;
+  margin-bottom: 10px;
+  overflow-wrap: anywhere;
+}
+
+/* ==============================
+   Resume Action Buttons
+================================= */
+
+.resume-card a,
+.resume-card button {
+  display: inline-block;
+  padding: 9px 13px;
+  border-radius: 7px;
+  font-size: 13px;
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+  transition: 0.2s ease;
+  margin-top: 12px;
+}
+
+.resume-card a {
+  background: #eef2ff;
+  color: #4338ca;
+  margin-right: 8px;
+}
+
+.resume-card a:hover {
+  background: #e0e7ff;
+}
+
+.resume-card button {
+  background: #fee2e2;
+  color: #dc2626;
+  border: none;
+}
+
+.resume-card button:hover {
+  background: #fecaca;
+}
+
+/* Toast Message */
+.toast-message {
+  position: fixed;
+  top: 25px;
+  right: 25px;
+  padding: 14px 22px;
+  border-radius: 8px;
+  color: white;
+  font-size: 14px;
+  font-weight: 600;
+  z-index: 1000;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  animation: slideIn 0.3s ease;
+}
+
+.toast-message.success {
+  background: #16a34a;
+}
+
+.toast-message.error {
+  background: #dc2626;
+}
+
+/* Confirmation Popup */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(15, 23, 42, 0.55);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+  padding: 20px;
+}
+
+.confirm-modal {
+  background: #ffffff;
+  width: 100%;
+  max-width: 420px;
+  padding: 28px;
+  border-radius: 14px;
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+  animation: popupIn 0.25s ease;
+}
+
+.confirm-modal h2 {
+  color: #0f172a;
+  font-size: 21px;
+  margin-bottom: 12px;
+}
+
+.confirm-modal p {
+  color: #64748b;
+  font-size: 14px;
+  line-height: 1.6;
+  margin-bottom: 25px;
+}
+
+.modal-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+}
+
+.modal-actions button {
+  padding: 10px 17px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  border: none;
+}
+
+.cancel-btn {
+  background: #e2e8f0;
+  color: #334155;
+}
+
+.cancel-btn:hover {
+  background: #cbd5e1;
+}
+
+.confirm-delete-btn {
+  background: #dc2626;
+  color: white;
+}
+
+.confirm-delete-btn:hover {
+  background: #b91c1c;
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateX(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes popupIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@media (max-width: 480px) {
+  .toast-message {
+    left: 15px;
+    right: 15px;
+    top: 15px;
+    text-align: center;
+  }
+
+  .confirm-modal {
+    padding: 22px;
+  }
+}
+
+/* ==============================
+   Responsive Design
+================================= */
+
+@media (max-width: 768px) {
+  .resume-manager {
+    padding: 20px;
+  }
+
+  .resume-header h1 {
+    font-size: 24px;
+  }
+
+  .resume-upload-form {
+    padding: 20px;
+  }
+
+  .resume-list {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 480px) {
+  .resume-manager {
+    padding: 15px;
+  }
+
+  .resume-card a,
+  .resume-card button {
+    margin-top: 10px;
+  }
+}

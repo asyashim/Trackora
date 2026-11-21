@@ -1,5 +1,6 @@
 
 import React from "react";
+import { NavLink } from "react-router-dom";
 
 const Sidebar = () => {
 
@@ -16,6 +17,15 @@ const Sidebar = () => {
       <nav className="sidebar-nav">
         <div className="nav-item active">▦ Overview</div>
         <div className="nav-item">▤ Applications</div>
+
+          <NavLink
+    to="/resumes"
+    className={({ isActive }) =>
+      `nav-item ${isActive ? "active" : ""}`
+    }
+  >
+    ▣ Resume Manager
+  </NavLink>
         <div className="nav-item">◷ Insights</div>
       </nav>
 
