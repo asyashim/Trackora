@@ -36,7 +36,15 @@ const Sidebar = () => {
   >
     ▣ Resume Manager
   </NavLink>
-        <div className="nav-item">◷ Insights</div>
+  <NavLink
+  to="/insights"
+  className={({ isActive }) =>
+    `nav-item ${isActive ? "active" : ""}`
+  }
+>
+  ◷ Insights
+</NavLink>
+        
       </nav>
 
       <div className="sidebar-bottom">

@@ -7,6 +7,7 @@ import Register from "./pages/Register";
 import Login from "./pages/Login";
 import Dashboard from "./pages/Dashboard";
 import ResumeManager from "./pages/ResumeManager";
+import Insights from "./pages/Insights";
 
 function App() {
   return (
@@ -35,6 +36,15 @@ function App() {
             </ProtectedRoute>
           }
         />
+
+        <Route
+  path="/insights"
+  element={
+    <ProtectedRoute>
+      <Insights />
+    </ProtectedRoute>
+  }
+/>
       </Routes>
     </BrowserRouter>
   );
